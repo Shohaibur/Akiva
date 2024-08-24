@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NY Estate LAW AI</title>
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    .background_color {
+      background-color: #171744;
+    }
+
+    .my_botton {
+    background: linear-gradient(90deg, #1fa2ff, #12d8fa, #a6ffcb);
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    align-self: center;
+    font-weight: 500;
+    font-size: 16px;
+    transition: background 0.5s ease;
+    }
+
+    .my_botton:hover {
+        background: linear-gradient(90deg, #a6ffcb, #12d8fa, #1fa2ff);
+    }
+
+    input[readonly] {
+      border: none;
+      cursor: none;
+      pointer-events: none;
+      background-color: none;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s;
+      -webkit-text-fill-color: #ffffff;
+    }
+    .card_bg{
+      background-color: #1d1d50;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #notification {
+      color: #45e445;
+    }
+
+  </style>
+</head>
+<body class="background_color mycontainer">
+  <main class="text-white m-auto p-4">
+    <!-- first form -->
+    <section class="w-full flex flex-col lg:flex-row lg:justify-between lg:items-center">
+      <div class="w-ful lg:w-4/5 my-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div class="relative">
+          <span class="background_color absolute -top-2 z-10 left-2 px-1 text-white text-sm font-bold">First Name*</span>
+          <input type="text" id="first-name" placeholder="Please provide your first name" required="true" class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl">
+          <p class=""></p>
+        </div>
+
+        <div class="relative">
+          <span class="background_color absolute -top-2 z-10 left-2 px-1 text-white text-sm font-bold">Last Name*</span>
+          <input type="text" id="last-name" placeholder="Please provide your last name" required="true" class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl">
+          <p class=""></p>
+        </div>
+
+        <div class="relative">
+          <span class="background_color absolute -top-2 z-10 left-2 px-1 text-white text-sm font-bold">Mobile Or Whatsapp*</span>
+          <input type="text" id="mobile" placeholder="Please provide your mobile number" required="true" class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl">
+          <p class=""></p>
+        </div>
+
+        <div class="relative">
+          <span class="background_color absolute -top-2 z-10 left-2 bg-transparent px-1 text-white text-sm font-bold">Email*</span>
+          <input type="email" id="email" placeholder="Please provide your email" required="true" class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl">
+          <p class=""></p>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/5 flex gap-2 items-center lg:justify-end">
+        <div class="">
+          <button type="button" class="my_botton" onclick="initiateAI()" id="initiate-button">
+            Initiate AI
+          </button>
+        </div>
+        <div class="flex items-center justify-center gap-2 flex-col">
+          <button type="button" class="my_botton hidden" onclick="toggleEditMode()" id="edit-button">
+            Edit
+          </button>
+          <div id="notification" class="hidden">Your Information Saved</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- avatar container -->
+     <section class="my-5">
+        <h2 class="text-xl lg:text-2xl">Select Your Desired AI Onboarding Experience Below</h2>
+        <h3 class="text-sm my-5">Remember, you can always transfer to a real human at any time</h3>
+        <div class="card_bg rounded-xl relative lg:h-80" id="avatar-section">
+          <div class="flex flex-col-reverse lg:flex-row gap-5 p-5 lg:justify-between" id="avatar-section">
+              <div class="flex flex-col justify-between items-start gap-10 w-full lg:w-1/2">
+                  <div class="">
+                      <h4 class="text-2xl font-semibold lg:mt-10">AI Avatar</h4>
+                      <p class="text-gray-400 lg:text-xl my-4">Speak “Face to Face” with one of our AI Avatars. It’s an experience you’re sure to remember!</p>
+                  </div>
+                  <div class="text-left">
+                    <button type="button" class="my_botton" id="start-button-avatar" onclick="hideAvatarSection()">Start</button>
+                  </div>
+              </div>
+              <div class="flex justify-center gap-2 w-full lg:w-1/2">
+                  <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7bb32688d5ee5a915e1ef.png" alt="Avatar 1" class="w-16 h-16 sm:w-20 sm:h-20 lg:w-32 lg:h-32 lg:mt-24 mt-12">
+
+                   <img src="https://storage.googleapis.com/msgsndr/HdpmQEFcOyjCw9DFaIyF/media/66b8a6f186938e698ee35ab3.png" alt="Avatar 1" class="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 lg:mt-16 mt-6">
+
+                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7bb988f665578345a8661.png" alt="Avatar 2" class="w-16 h-16 sm:w-20 sm:h-20 lg:w-32 lg:h-32">
+
+                  <img src="https://storage.googleapis.com/msgsndr/HdpmQEFcOyjCw9DFaIyF/media/66b8a7267eda5c9cce64cbdc.png" alt="Avatar 1" class="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 lg:mt-16 mt-6">
+
+                  <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7bc7a9d8a3937cc70b25d.png" alt="Avatar 3" class="w-16 h-16 sm:w-20 sm:h-20 lg:w-32 lg:h-32 lg:mt-24 mt-12">
+              </div>
+          </div>
+        </div>
+        <div class="card_bg rounded-xl p-5 hidden lg:h-80" id="avatar-section-content">
+          <div class="flex justify-between">
+            <h2 class="text-2xl font-semibold">AI Avatar</h2>
+            <div class="" style="display: flex; align-items: flex-start; gap: 10px ">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7cb935898a85ae62927b2.png" alt="AI Chatbot" class="w-10 h-10">
+                <span onclick="closeAiAvatar()" style="font-size: 25px; color: white; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="">
+              <div class="flex flex-col-reverse lg:flex-row justify-between">
+                <div class="w-full lg:w-2/3">
+                  <h3 class="bg-white text-black font-semibold pl-1.5">Chat History</h3>
+                  <div class="w-full h-40 border border-white">
+
+                  </div>
+                  <div class="w-full flex items-center gap-2 my-2">
+                    <input type="text" placeholder="Type your message here..." class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl">
+                    <div class="flex items-center justify-center w-10 h-9 border-2 border-white rounded-full cursor-pointer">
+                      <img src="https://img.icons8.com/material-outlined/24/ffffff/microphone.png" alt="Microphone" class="w-4 h-4"/>
+                   </div>
+
+                   <div class="flex items-center justify-center w-10 h-9 border-2 border-white rounded-full cursor-pointer">
+                       <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgMTc2LjM2OCAxNzYuMzY4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNzUuODY1IDEyLjQ4OWMyLjQ2OS03LjQwOC00LjU3OC0xNC40NTYtMTEuOTg2LTExLjk4N0w2LjQ4IDUyLjk2OWMtOC44MzkgMi45NDYtOC41NjUgMTUuNTQyLjM5MyAxOC4xMDFsNzYuNTUyIDIxLjg3MyAyMS44NzIgNzYuNTUyYzIuNTYgOC45NTkgMTUuMTU1IDkuMjMzIDE4LjEwMS4zOTN6bS0xMi4zNCA3LjA1NS00OS4xMTYgMTQ3LjM0OC0yMS44My03Ni40MDN6bS02LjcwMS02LjcwMUw4NS44NzkgODMuNzg4IDkuNDc3IDYxLjk1OXoiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMSIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9IiI+PC9wYXRoPjwvZz48L3N2Zz4=" class="w-4 h-3"/>
+                   </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-1/3 flex justify-center">
+                    <img class="" src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7bb32688d5ee5a915e1ef.png" alt="Chat Image">
+                </div>
+              </div>
+          </div>
+        </div>
+     </section>
+
+     <!-- chatbot and vhoice -->
+      <section class="flex flex-col lg:flex-row lg:justify-between gap-5">
+        <div class="card_bg rounded-xl p-5 w-full lg:w-2/3 flex flex-col justify-center" id="ai-chatbot">
+          <div class="w-full flex justify-between items-center gap-10">
+            <div class="flex flex-col justify-between items-start gap-10">
+              <div class="">
+                  <h4 class="text-2xl font-semibold">AI Chatbot</h4>
+                  <p class="text-gray-400">Converse with our friendly AI Chatbot. It’s easy!</p>
+              </div>
+              <div class="text-left">
+                  <button type="button" class="my_botton" id="start-button-chat" onclick="hideChatbotSection()">Start</button>
+              </div>
+          </div>
+          <div class="flex justify-center items-center">
+              <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7cb935898a85ae62927b2.png" alt="AI Chatbot" class="w-48 h-48">
+          </div>
+          </div>
+        </div>
+
+        <div class="card_bg rounded-xl p-5 hidden w-full lg:w-2/3" id="ai-chatbot-content">
+          <div class="flex justify-between">
+            <h2 class="text-2xl font-semibold">AI Chatbot</h2>
+            <div class="" style="display: flex; align-items: flex-start; gap: 10px">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7cb935898a85ae62927b2.png" alt="AI Chatbot" class="w-14 h-14">
+                <span onclick="closeAiChatbot()" style="font-size: 25px; color: white; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="w-full mt-5">
+            <h3 class="bg-white text-black font-semibold pl-1.5">Chat History</h3>
+            <div class="w-full h-44 border border-white">
+
+            </div>
+            <div class="w-full flex items-center gap-2 mt-5">
+              <input type="text" placeholder="Type your message here..." class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl">
+              <div class="flex items-center justify-center w-10 h-9 border-2 border-white rounded-full cursor-pointer">
+                <img src="https://img.icons8.com/material-outlined/24/ffffff/microphone.png" alt="Microphone" class="w-4 h-4"/>
+             </div>
+
+             <div class="flex items-center justify-center w-10 h-9 border-2 border-white rounded-full cursor-pointer">
+                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB4PSIwIiB5PSIwIiB2aWV3Qm94PSIwIDAgMTc2LjM2OCAxNzYuMzY4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNzUuODY1IDEyLjQ4OWMyLjQ2OS03LjQwOC00LjU3OC0xNC40NTYtMTEuOTg2LTExLjk4N0w2LjQ4IDUyLjk2OWMtOC44MzkgMi45NDYtOC41NjUgMTUuNTQyLjM5MyAxOC4xMDFsNzYuNTUyIDIxLjg3MyAyMS44NzIgNzYuNTUyYzIuNTYgOC45NTkgMTUuMTU1IDkuMjMzIDE4LjEwMS4zOTN6bS0xMi4zNCA3LjA1NS00OS4xMTYgMTQ3LjM0OC0yMS44My03Ni40MDN6bS02LjcwMS02LjcwMUw4NS44NzkgODMuNzg4IDkuNDc3IDYxLjk1OXoiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMSIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9IiI+PC9wYXRoPjwvZz48L3N2Zz4=" class="w-4 h-3"/>
+             </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card_bg rounded-xl pt-5 pr-5 pl-5 w-full lg:w-1/3" id="ai-vhoice">
+          <div class="flex justify-between w-full">
+              <h2 class="text-2xl font-semibold">AI Voice</h2>
+              <button type="button" class="my_botton" id="start-button-voice" onclick="hideVhoiceSection()">Start</button>
+          </div>
+          <p class="text-gray-400">Make sure you entered your Phone number above, click Start and answer you Phone!</p>
+          <div class="w-full mt-5">
+              <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7cd04688d5e523815e909.png" alt="AI Voice"
+              class="h-28 mx-auto">
+          </div>
+        </div>
+
+        <div class="card_bg rounded-xl p-5 w-full lg:w-1/3 hidden" id="ai-vhoice-content">
+          <div class="flex justify-between">
+            <h2 class="text-2xl font-semibold">AI Voice</h2>
+            <div class="" style="display: flex; align-items: flex-start; gap: 10px">
+                <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66a7cd04688d5e523815e909.png" alt="AI Chatbot" class="w-14 h-14">
+                <span onclick="closeAiVhoice()" style="font-size: 25px; color: white; cursor: pointer;">X</span>
+            </div>
+          </div>
+          <div class="w-full mt-5">
+            <h3 class="bg-white text-black font-semibold pl-1.5">Chat History</h3>
+            <div class="w-full h-44 border border-white">
+
+            </div>
+            <div class="w-full flex flex-col lg:flex-row items-center justify-center gap-2 mt-5">
+              <input id="mymobile" type="text" placeholder="Type your number" class="bg-transparent border border-white p-2 w-full rounded-xl">
+              <button type="button" class="my_botton w-full" id="">Call Me</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- whatapp, email, sms -->
+       <section class="flex flex-col lg:flex-row lg:justify-between gap-5 my-5">
+
+          <div class="flex flex-col lg:flex-row gap-5 w-full lg:w-2/3">
+            <div class="w-full"  id="ai-whatsapp">
+              <div class="card_bg rounded-xl pt-5 pr-5 pl-5 w-full">
+                <div class="flex justify-between w-full ">
+                    <h2 class="text-2xl font-semibold">AI Whatsapp</h2>
+                    <button type="button" class="my_botton" id="start-button-whatsapp" onclick="hideWhatsappSection()">Start</button>
+                </div>
+                <p class="text-gray-400 h-20">Converse with our friendly AI Chatbot. It’s easy!</p>
+                <div class="w-full mt-5">
+                    <img src="https://storage.googleapis.com/msgsndr/HdpmQEFcOyjCw9DFaIyF/media/66a8609ca57ce52512621846.png" alt="AI Voice"
+                    class="h-28 mx-auto">
+                </div>
+              </div>
+            </div>
+
+            <div class="card_bg rounded-xl p-5 hidden w-full" id="ai-whatsapp-content">
+              <div class="flex justify-between">
+                <h2 class="text-2xl font-semibold">AI Whatsapp</h2>
+                <div class="" style="display: flex; align-items: flex-start; gap: 10px">
+                    <img src="https://storage.googleapis.com/msgsndr/HdpmQEFcOyjCw9DFaIyF/media/66a8609ca57ce52512621846.png" alt="AI Chatbot" class="w-14 h-14">
+                    <span onclick="closeAiWhatsapp()" style="font-size: 25px; color: white; cursor: pointer;">X</span>
+                </div>
+              </div>
+              <div class="w-full mt-5">
+                <h3 class="bg-white text-black font-semibold pl-1.5">Chat History</h3>
+                <div class="w-full h-44 border border-white">
+
+                </div>
+                <div class="w-full flex flex-col lg:flex-row items-center justify-center gap-2 mt-5">
+                  <input id="mymobile1" type="text" placeholder="Type your number" class="bg-transparent border border-white p-2 rounded-xl w-full">
+                  <button type="button" class="my_botton w-full text-xs" id="">Whatsapp Me</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full" id="ai-email">
+               <div class="card_bg rounded-xl pt-5 pr-5 pl-5 w-full" >
+                  <div class="flex justify-between w-full">
+                      <h2 class="text-2xl font-semibold">AI Email</h2>
+                      <button type="button" class="my_botton" onclick="hideEmailSection()">Start</button>
+                  </div>
+                  <p class="text-gray-400 lg:h-20">Make sure you entered your Email address above, click Start and check your Email!</p>
+                  <div class="w-full mt-5">
+                      <img src="https://storage.googleapis.com/msgsndr/HdpmQEFcOyjCw9DFaIyF/media/66b9b2217e40ce1935e50b82.png" alt="AI email"
+                      class="h-28 mx-auto">
+                  </div>
+                </div>
+            </div>
+
+            <div class="card_bg rounded-xl p-5 hidden w-full" id="ai-email-content">
+              <div class="flex justify-between">
+                <h2 class="text-2xl font-semibold">AI Email</h2>
+                <div class="" style="display: flex; align-items: flex-start; gap: 10px">
+                    <img src="https://storage.googleapis.com/msgsndr/HdpmQEFcOyjCw9DFaIyF/media/66b9b2217e40ce1935e50b82.png" alt="AI Chatbot" class="w-14 h-14">
+                    <span onclick="closeAiEmail()" style="font-size: 25px; color: white; cursor: pointer;">X</span>
+                </div>
+              </div>
+              <div class="w-full mt-5">
+                <h3 class="bg-white text-black font-semibold pl-1.5">Chat History</h3>
+                <div class="w-full h-44 border border-white">
+
+                </div>
+                <div class="w-full flex flex-col lg:flex-row items-center justify-center gap-2 mt-5">
+                  <input id="myemail" type="text" placeholder="Type your number" class="bg-transparent border border-white p-2 rounded-xl w-full">
+                  <button type="button" class="my_botton w-full" id="">Email Me</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/3">
+            <div class=""  id="ai-sms">
+              <div class="card_bg rounded-xl pt-5 pr-5 pl-5 w-full">
+                <div class="flex justify-between w-full ">
+                    <h2 class="text-2xl font-semibold">AI SMS</h2>
+                    <button type="button" class="my_botton" id="start-button-email" onclick="hideSmsSection()">Start</button>
+                </div>
+                <p class="text-gray-400 h-20">Make sure you entered your Mobile number above, click Start and check your Phone Messages!</p>
+                <div class="w-full mt-5">
+                    <img src="https://storage.googleapis.com/msgsndr/HdpmQEFcOyjCw9DFaIyF/media/66a8619da57ce511c16218d1.png" alt="AI sms"
+                    class="h-28 mx-auto">
+                </div>
+              </div>
+            </div>
+
+            <div class="card_bg rounded-xl p-5 hidden w-full" id="ai-sms-content">
+              <div class="flex justify-between">
+                <h2 class="text-2xl font-semibold">AI SMS</h2>
+                <div class="" style="display: flex; align-items: flex-start; gap: 10px">
+                    <img src="https://storage.googleapis.com/msgsndr/HdpmQEFcOyjCw9DFaIyF/media/66a8619da57ce511c16218d1.png" alt="AI sms" class="w-14 h-14">
+                    <span onclick="closeAiSms()" style="font-size: 25px; color: white; cursor: pointer;">X</span>
+                </div>
+              </div>
+              <div class="w-full mt-5">
+                <h3 class="bg-white text-black font-semibold pl-1.5 ">Chat History</h3>
+                <div class="w-full h-44 border border-white">
+
+                </div>
+                <div class="w-full flex flex-col lg:flex-row items-center justify-center gap-2 mt-5">
+                  <input id="mysms" type="text" placeholder="Type your number" class="bg-transparent border border-white p-2 w-full rounded-xl">
+                  <button type="button" class="my_botton w-full" id="">Text Me</button>
+                </div>
+              </div>
+            </div>
+          </div>
+       </section>
+
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const storedData = JSON.parse(localStorage.getItem('formData'));
+      if (storedData) {
+        document.getElementById('first-name').value = storedData.firstName;
+        document.getElementById('last-name').value = storedData.lastName;
+        document.getElementById('mobile').value = storedData.mobile;
+        document.getElementById('email').value = storedData.email;
+
+        document.getElementById('mymobile').value = storedData.mobile;
+        document.getElementById('mymobile1').value = storedData.mobile;
+        document.getElementById('mysms').value = storedData.mobile;
+        document.getElementById('myemail').value = storedData.email;
+
+        setFieldsReadOnly(true);
+        document.getElementById('initiate-button').classList.add('hidden');
+        document.getElementById('edit-button').classList.remove('hidden');
+      }
+    });
+
+    function showNotification() {
+      var notification = document.getElementById("notification");
+      notification.classList.remove("hidden");
+    }
+
+    function hideNotification() {
+      var notification = document.getElementById("notification");
+      notification.classList.add("hidden");
+    }
+
+    function initiateAI() {
+      if (validateForm()) {
+        saveFormData();
+        setFieldsReadOnly(true);
+        document.getElementById('initiate-button').classList.add('hidden');
+        document.getElementById('edit-button').classList.remove('hidden');
+        showTickIcon();
+      }
+    }
+
+    function toggleEditMode() {
+      const isReadOnly = document.getElementById('first-name').readOnly;
+
+      if (isReadOnly) {
+        setFieldsReadOnly(false);
+        document.getElementById('edit-button').innerText = "Save";
+        hideNotification();
+      } else {
+        if (validateForm()) {
+          saveFormData();
+          setFieldsReadOnly(true);
+          document.getElementById('edit-button').innerText = "Edit";
+        }
+      }
+    }
+
+    function validateForm() {
+      let isValid = true;
+      const fields = ['first-name', 'last-name', 'mobile', 'email'];
+
+      fields.forEach(fieldId => {
+        const input = document.getElementById(fieldId);
+        const errorMessage = input.nextElementSibling;
+
+        if (input.value.trim() === '') {
+          errorMessage.textContent = `${input.placeholder} to get started`;
+          errorMessage.style.color = 'red';
+          isValid = false;
+        } else {
+          errorMessage.textContent = '';
+        }
+      });
+
+      return isValid;
+    }
+
+    function saveFormData() {
+      const formData = {
+        firstName: document.getElementById('first-name').value,
+        lastName: document.getElementById('last-name').value,
+        mobile: document.getElementById('mobile').value,
+        email: document.getElementById('email').value
+      };
+      localStorage.setItem('formData', JSON.stringify(formData));
+
+      showNotification();
+
+      document.getElementById('mymobile').value = document.getElementById('mobile').value;
+      document.getElementById('mymobile1').value = document.getElementById('mobile').value;
+      document.getElementById('mysms').value = document.getElementById('mobile').value;
+      document.getElementById('myemail').value = document.getElementById('email').value;
+
+      sendToWebhook(formData); // Send data to the webhook
+    }
+
+    function sendToWebhook(data) {
+      fetch('https://services.leadconnectorhq.com/hooks/HdpmQEFcOyjCw9DFaIyF/webhook-trigger/GQtJIYBHpGXxfqArf552', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Webhook Success:', data);
+      })
+      .catch((error) => {
+        console.error('Webhook Error:', error);
+      });
+    }
+
+    function setFieldsReadOnly(readOnly) {
+      const fields = ['first-name', 'last-name', 'mobile', 'email'];
+      fields.forEach(fieldId => {
+        const input = document.getElementById(fieldId);
+        input.readOnly = readOnly;
+        input.style.cursor = readOnly ? 'default' : 'text';
+        input.style.border = readOnly ? 'none' : '1px solid #ccc';
+      });
+    }
+
+    function hideAvatarSection(){
+      document.getElementById('avatar-section-content').classList.remove('hidden')
+      document.getElementById('avatar-section').classList.add('hidden');
+    }
+
+    function closeAiAvatar(){
+      document.getElementById('avatar-section-content').classList.add('hidden');
+      document.getElementById('avatar-section').classList.remove('hidden')
+    }
+
+    function hideChatbotSection(){
+      document.getElementById('ai-chatbot-content').classList.remove('hidden')
+      document.getElementById('ai-chatbot').classList.add('hidden');
+    }
+
+    function closeAiChatbot(){
+      document.getElementById('ai-chatbot-content').classList.add('hidden');
+      document.getElementById('ai-chatbot').classList.remove('hidden')
+    }
+
+    function hideVhoiceSection(){
+      document.getElementById('ai-vhoice-content').classList.remove('hidden')
+      document.getElementById('ai-vhoice').classList.add('hidden');
+    }
+
+    function closeAiVhoice(){
+      document.getElementById('ai-vhoice-content').classList.add('hidden');
+      document.getElementById('ai-vhoice').classList.remove('hidden')
+    }
+
+    function hideWhatsappSection(){
+      document.getElementById('ai-whatsapp-content').classList.remove('hidden')
+      document.getElementById('ai-whatsapp').classList.add('hidden');
+    }
+
+    function closeAiWhatsapp(){
+      document.getElementById('ai-whatsapp-content').classList.add('hidden');
+      document.getElementById('ai-whatsapp').classList.remove('hidden')
+    }
+
+    function hideEmailSection(){
+      document.getElementById('ai-email-content').classList.remove('hidden')
+      document.getElementById('ai-email').classList.add('hidden');
+    }
+
+    function closeAiEmail(){
+      document.getElementById('ai-email-content').classList.add('hidden');
+      document.getElementById('ai-email').classList.remove('hidden')
+    }
+
+    function hideSmsSection(){
+      document.getElementById('ai-sms-content').classList.remove('hidden')
+      document.getElementById('ai-sms').classList.add('hidden');
+    }
+
+    function closeAiSms(){
+      document.getElementById('ai-sms-content').classList.add('hidden');
+      document.getElementById('ai-sms').classList.remove('hidden')
+    }
+</script>
+
+</body>
+</html>
