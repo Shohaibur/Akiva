@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NY Estate LAW AI</title>
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .mybackground_color {
+      background-color: #171744;
+    }
+    .button {
+      background: linear-gradient(90deg, #1fa2ff, #12d8fa, #a6ffcb);
+      color: #fff;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      align-self: center;
+      font-weight: 500;
+      font-size: 16px;
+      transition: background 0.5s ease;
+    }
+    .button:hover {
+      background: linear-gradient(90deg, #a6ffcb, #12d8fa, #1fa2ff);
+    }
+    input[readonly] {
+      border: none;
+      cursor: none;
+      pointer-events: none;
+      background-color: none;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s;
+      -webkit-text-fill-color: #ffffff;
+    }
+    #mynotification {
+      color: #45e445;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4">
+    <section class="h-64">
+      <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/HdpmQEFcOyjCw9DFaIyF/media/66bd9c6cb42c9b4b0d986581.png" alt="" class="rounded-md w-full h-full">
+    </section>
+    <div class="mybackground_color rounded-md col-span-2 lg:h-64 flex items-center" id="button-container">
+      <section class="grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-4 p-4 rounded-md w-full">
+        <button type="button" class="button" onclick="openGetMyInfo1()">
+          What is Ai Onboarding1
+        </button>
+        <button type="button" class="button" onclick="openGetMyInfo1()">
+          What is Ai Onboarding2
+        </button>
+        <button type="button" class="button" onclick="openGetMyInfo1()">
+          What is Ai Onboarding3
+        </button>
+        <button type="button" class="button" onclick="openGetMyInfo1()">
+          What is Ai Onboarding4
+        </button>
+        <button type="button" class="button" onclick="openGetMyInfo1()">
+          What is Ai Onboarding5
+        </button>
+        <button type="button" class="button" onclick="openGetMyInfo1()">
+          What is Ai Onboarding6
+        </button>
+        <button type="button" class="button" onclick="openGetMyInfo1()">
+          What is Ai Onboarding7
+        </button>
+        <button type="button" class="button" onclick="openGetMyInfo1()">
+          What is Ai Onboarding8
+        </button>
+      </section>
+    </div>
+    <div class="mybackground_color rounded-md col-span-2 lg:h-64 hidden relative" id="button-container-content1">
+      <!-- Close Button -->
+      <span class="absolute top-2 right-2 text-white font-bold cursor-pointer" onclick="hideGetMyInfo1()">X</span>
+      <section class="flex items-center h-full rounded-md">
+        <div class="w-full flex flex-col lg:flex-row lg:justify-between lg:items-center p-4">
+          <div class="w-full lg:w-4/5 my-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <div class="relative">
+              <span class="mybackground_color absolute -top-2 z-10 left-2 px-1 text-white text-sm font-bold">First Name*</span>
+              <input type="text" id="1first-name" placeholder="Please provide your first name" required="true" class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl text-white">
+              <p class=""></p>
+            </div>
+            <div class="relative">
+              <span class="mybackground_color absolute -top-2 z-10 left-2 px-1 text-white text-sm font-bold">Last Name*</span>
+              <input type="text" id="1last-name" placeholder="Please provide your last name" required="true" class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl text-white">
+              <p class=""></p>
+            </div>
+            <div class="relative">
+              <span class="mybackground_color absolute -top-2 z-10 left-2 px-1 text-white text-sm font-bold">Mobile Or Whatsapp*</span>
+              <input type="text" id="1mobile" placeholder="Please provide your mobile number" required="true" class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl text-white">
+              <p class=""></p>
+            </div>
+            <div class="relative">
+              <span class="mybackground_color absolute -top-2 z-10 left-2 bg-transparent px-1 text-white text-sm font-bold">Email*</span>
+              <input type="email" id="1email" placeholder="Please provide your email" required="true" class="bg-transparent border border-white p-2 w-full pt-4 rounded-xl text-white">
+              <p class=""></p>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/5 flex gap-2 items-center lg:justify-end">
+            <div>
+              <button type="button" class="button" onclick="collectInfo()" id="collect-button">
+                Send My Info
+              </button>
+            </div>
+            <div class="flex items-center justify-center gap-2 flex-col">
+              <button type="button" class="button hidden" onclick="toggleEditMode1()" id="collectEdit-button">
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="mynotification" class="hidden text-center font-bold">Your Free Info will arrive shortly</div>
+
+  <script>
+    // Webhook URL
+    const webhookUrl = 'https://services.leadconnectorhq.com/hooks/HdpmQEFcOyjCw9DFaIyF/webhook-trigger/GQtJIYBHpGXxfqArf552';
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const storedData = JSON.parse(localStorage.getItem('myformData'));
+      if (storedData) {
+        document.getElementById('1first-name').value = storedData.firstName;
+        document.getElementById('1last-name').value = storedData.lastName;
+        document.getElementById('1mobile').value = storedData.mobile;
+        document.getElementById('1email').value = storedData.email;
+
+        setFieldsReadOnly1(true);
+        document.getElementById('collect-button').classList.add('hidden');
+        document.getElementById('collectEdit-button').classList.remove('hidden');
+      }
+    });
+
+    function collectInfo() {
+      if (validateForm1()) {
+        saveFormData1();
+        setFieldsReadOnly1(true);
+        document.getElementById('collect-button').classList.add('hidden');
+        document.getElementById('collectEdit-button').classList.remove('hidden');
+
+        // Send data to webhook
+        const formData = {
+          firstName: document.getElementById('1first-name').value,
+          lastName: document.getElementById('1last-name').value,
+          mobile: document.getElementById('1mobile').value,
+          email: document.getElementById('1email').value,
+        };
+
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Webhook success:', data);
+        })
+        .catch(error => {
+          console.error('Webhook error:', error);
+        });
+      }
+    }
+
+    function toggleEditMode1() {
+      const isReadOnly = document.getElementById('1first-name').readOnly;
+
+      if (isReadOnly) {
+        setFieldsReadOnly1(false);
+        document.getElementById('collect-button').classList.remove('hidden');
+        document.getElementById('collectEdit-button').classList.add('hidden');
+      } else {
+        setFieldsReadOnly1(true);
+        document.getElementById('collect-button').classList.add('hidden');
+        document.getElementById('collectEdit-button').classList.remove('hidden');
+      }
+    }
+
+    function setFieldsReadOnly1(isReadOnly) {
+      document.getElementById('1first-name').readOnly = isReadOnly;
+      document.getElementById('1last-name').readOnly = isReadOnly;
+      document.getElementById('1mobile').readOnly = isReadOnly;
+      document.getElementById('1email').readOnly = isReadOnly;
+    }
+
+    function validateForm1() {
+      const firstName = document.getElementById('1first-name').value.trim();
+      const lastName = document.getElementById('1last-name').value.trim();
+      const mobile = document.getElementById('1mobile').value.trim();
+      const email = document.getElementById('1email').value.trim();
+
+      if (firstName === '' || lastName === '' || mobile === '' || email === '') {
+        alert('Please fill in all required fields.');
+        return false;
+      }
+
+      return true;
+    }
+
+    function saveFormData1() {
+      const formData = {
+        firstName: document.getElementById('1first-name').value,
+        lastName: document.getElementById('1last-name').value,
+        mobile: document.getElementById('1mobile').value,
+        email: document.getElementById('1email').value,
+      };
+      localStorage.setItem('myformData', JSON.stringify(formData));
+    }
+
+    function openGetMyInfo1() {
+      document.getElementById('button-container').classList.add('hidden');
+      document.getElementById('button-container-content1').classList.remove('hidden');
+    }
+
+    function hideGetMyInfo1() {
+      document.getElementById('button-container').classList.remove('hidden');
+      document.getElementById('button-container-content1').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
